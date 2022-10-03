@@ -1,5 +1,7 @@
 # advent-of-code
-My solutions on Advent of Code puzzles
+Hello! This year I started solving Advent of Code puzzles using Python. These are the compiled solutions for the puzzles per year. 
+
+You may refer on the progress tracker shown below to see which puzzles I have solved already.
 
 
 # Progress Tracker
