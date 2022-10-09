@@ -8,7 +8,7 @@ You may refer on the progress tracker shown below to see which puzzles I have so
 
 Day | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | 2021
 --- | ---- | ---- | ---- | ----| ---- | ---- | ----
-1 | X |  |  | |  |  | X
+1 | X |  | X | X | X | X | X
 2 | X |  |  | |  |  | X
 3 | X |  |  | |  |  | X
 4 |  |  |  | |  |  | 
