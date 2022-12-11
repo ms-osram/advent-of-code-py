@@ -1,5 +1,5 @@
 directions = []
-stepsNumber = []
+
 while True:
     inp = ""
     try:
@@ -17,86 +17,78 @@ while True:
     directions.append(temp_list)
 
 
-# x and y coordinates of Head 
-hx = 0 
-hy = 0 
 
-# x and y coordinates of Tail
-tx = 0
-ty = 0
+def main_head_movement(length): 
+    elements = [(0,0) for x in range(length)]
 
-# difference of H and T x and y coordinates
-
-s = 0 #origin
-
-
-coveredPositions = set()
-
-hCoords = (hx, hy)
-tCoords = (tx, ty)
-dRange = ((0,0), (1,0), (-1,0), (0,1), (0,-1), (1,1), (1,-1), (-1,-1),(-1,1))
-
-
-print("Initial Head Coordinates: ", hCoords)
-print("Initial Tail Coordinates: ", tCoords)
-
-for d in directions:
-    print(d[0])
-    for i in range(d[1]):
-        
-        if d[0] == "U":
-            hy += 1
-
-        elif d[0] == "D":
-            hy -= 1
-
-        elif d[0] == "L":
-            hx -= 1
-
-        elif d[0] == "R":
-            hx += 1
-
-        dx = hx - tx
-        dy = hy - ty
-        dCoords = (dx, dy)
-        print("DX: ", dx, "| DY: ", dy)
+    hx = elements[0][0]
+    hy = elements[0][1]
     
-        if dCoords not in dRange:
-            if dx >= 1 and dy >= 1:
-                tx += 1
-                ty += 1
-            elif dx <= -1 and dy <= -1:
-                tx -= 1
-                ty -= 1
-            elif dx >= 1 and dy <= -1:
-                tx += 1
-                ty -= 1
-            elif dx <= -1 and dy >= 1:
-                tx -= 1
-                ty += 1 
-            elif dx > 1 and dy == 0:
-                tx += 1
-            elif dx < -1 and dy == 0:
-                tx -= 1
-            elif dy > 1 and dx == 0:
-                ty += 1
-            elif dy < -1 and dx == 0:
-                ty -= 1 
+    coveredPositions = set()
 
-        hCoords = (hx, hy)
-        tCoords = (tx, ty)
-        print("Head Coordinates: ", hCoords)
-        print("Tail Coordinates: ", tCoords)
-        if tCoords not in coveredPositions:
-            coveredPositions.add(tCoords)
-            print("Covered Positions: ", coveredPositions)
+    for d in directions:
+        
+        for i in range(d[1]):
+            # only for the main head
             
-                
-print("Directions: ",directions)
-#print("Number of Steps: ", stepsNumber)
+            if d[0] == "U":
+                hy += 1
 
-print(coveredPositions)
-print(len(coveredPositions))
+            elif d[0] == "D":
+                hy -= 1
+
+            elif d[0] == "L":
+                hx -= 1
+
+            elif d[0] == "R":
+                hx += 1
+
+            elements[0] = (hx, hy)         
+               
+            for h in range(len(elements)-1):
+                hCoords = elements[h]
+                tCoords = elements[h+1]
+                elements[h+1] = tail_movement(hCoords, tCoords)
+            coveredPositions.add(elements[-1])
+            
+    return print("The number of Covered Positions by the tail is: {}".format(len(coveredPositions)))
+
+def tail_movement(hCoords, tCoords):
+    dRange = ((0,0), (1,0), (-1,0), (0,1), (0,-1), (1,1), (1,-1), (-1,-1),(-1,1))    
+    hx = hCoords[0]
+    hy = hCoords[1]    
+
+    tx = tCoords[0]
+    ty = tCoords[1]
+
+    dx = hx - tx
+    dy = hy - ty
+    dCoords = (dx, dy)
+
+    if dCoords not in dRange:
+        if dx >= 1 and dy >= 1:
+            tx += 1
+            ty += 1
+        elif dx <= -1 and dy <= -1:
+            tx -= 1
+            ty -= 1
+        elif dx >= 1 and dy <= -1:
+            tx += 1
+            ty -= 1
+        elif dx <= -1 and dy >= 1:
+            tx -= 1
+            ty += 1 
+        elif dx > 1 and dy == 0:
+            tx += 1
+        elif dx < -1 and dy == 0:
+            tx -= 1
+        elif dy > 1 and dx == 0:
+            ty += 1
+        elif dy < -1 and dx == 0:
+            ty -= 1 
+    return (tx, ty)
 
 
-
+main_head_movement(2)
+main_head_movement(10)
+    
