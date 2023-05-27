@@ -14,7 +14,7 @@ Each year, Advent of Code introduces a new set of challenges, and participants h
 
 ## Obtaining Puzzles
 
-To participate in Advent of Code, you can visit the official Advent of Code website (adventofcode.com) starting from December 1st. Each day, a new puzzle is unlocked at midnight Eastern Standard Time (UTC-5:00). The puzzles remain accessible throughout the event, allowing participants to catch up if they missed a few days.
+To participate in Advent of Code, you can visit the official [Advent of Code website](adventofcode.com) starting from December 1st. Each day, a new puzzle is unlocked at midnight Eastern Standard Time (UTC-5:00). The puzzles remain accessible throughout the event, allowing participants to catch up if they missed a few days.
 
 ## Submitting Solutions
 
