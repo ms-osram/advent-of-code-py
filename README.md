@@ -26,7 +26,7 @@ Advent of Code has a vibrant and active community. Participants often gather on 
 
 ## Repository Contents
 
-This repository serves as a compilation of my solutions for Advent of Code, organized by year. The structure of this repository is designed to help easily navigate and locate solutions for specific puzzles. 
+This repository serves as a compilation of my solutions for Advent of Code using Python programming language, organized by year. The structure of this repository is designed to help easily navigate and locate solutions for specific puzzles. 
 
 Please note that these solutions are based on my personal efforts and understanding of the puzzles. They may not be the most efficient or optimal solutions, but they represent my progress and growth as a programmer throughout the Advent of Code event.
 
