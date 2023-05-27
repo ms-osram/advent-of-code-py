@@ -34,32 +34,3 @@ Feel free to explore the repository, review my solutions, and compare them with 
 
 I hope these solutions can serve as a useful resource for you in your coding journey. Happy coding and enjoy Advent of Code!
 
-# Progress Tracker
-
-Day | 2015 | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022
---- | ---- | ---- | ---- | ----| ---- | ---- | ---- | ----
-1 | X | X | X | X | X | X | X | X
-2 | X | X | X | X | x | X | X | X
-3 | X | X |  | |  | X | X | X
-4 | X | X | X | | X |  | | X
-5 | X | X |  | |  |  | | X
-6 |  | X |  | |  |  | | X
-7 | X | X |  | |  |  | |
-8 | X |  |  | |  |  | |
-9 |  |  |  | |  |  | |
-10 | X |  |  | |  |  | |
-11 |  |  |  | |  |  | |
-12 |  |  |  | |  |  | |
-13 | x |  |  | |  |  | |
-14 | x |  |  | |  |  | |
-15 |  |  | X | |  |  | |
-16 |  |  |  | |  |  | |
-17 |  |  |  | |  |  | |
-18 |  |  |  | |  |  | |
-19 |  |  |  | |  |  | |
-20 |  |  |  | |  |  | |
-21 |  |  |  | |  |  | |
-22 |  |  |  | |  |  | |
-23 |  |  |  | |  |  | |
-24 |  |  |  | |  |  | |
-25 |  |  |  | |  |  | |
