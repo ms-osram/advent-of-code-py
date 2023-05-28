@@ -35,4 +35,3 @@ Feel free to explore the repository, review my solutions, and compare them with 
 I hope these solutions can serve as a useful resource for you in your coding journey. Happy coding and enjoy Advent of Code!
 
 
-![Progress](https://img.shields.io/badge/Progress-finished-pink)
