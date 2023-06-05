@@ -1,14 +1,8 @@
+from sys import stdin
 rangePairs = []
 
-while True:
-    inp = ""
-    
-    try: inp = input("")
-    
-    except EOFError:
-        break
-    
-    x = inp.replace("-", ",")
+for line in stdin:    
+    x = line.replace("-", ",")
     splitx = x.split(",")
     rangePairs.append(splitx)
     
@@ -43,7 +37,7 @@ for pairs in intPairs:
         intersectionCounter += 1
 
 
-print("Total Count of subsets is: ", pairCounter)
-print("The total number of intersectioning pairs is: ", intersectionCounter)
+print("Total Count of subsets is {}.".format(pairCounter))
+print("The total number of intersectioning pairs is {}.".format(intersectionCounter))
 
 

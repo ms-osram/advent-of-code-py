@@ -1,22 +1,15 @@
+from sys import stdin
 import itertools
 
 rucksacks = []
 
 values = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 value = list(values)
-print(value)
-while True:
-    
-    inp = ""
-    try: inp = input()
-    except EOFError:
-        break
 
-    rucksacks.append(inp)
+for line in stdin:
+    rucksacks.append(line.strip())
 
-#print(rucksacks)
-
-def day1(rucksacks):
+def part1(rucksacks):
     letters = []
     letter_values = []
     for rucks in rucksacks:
@@ -27,21 +20,17 @@ def day1(rucksacks):
 
         for item in b:
             if item in a:
-                print("The common letter is: ", item)
                 letters.append(item)
                 letter_values.append(values.index(item))
                 break
         
-    print("The answer for day 1 is: ", sum(letter_values))
-
-day1(rucksacks)
-print("\n")
-
+    print("The answer for day 1 is {}.".format(sum(letter_values)))
+    return sum(letter_values)
 
 
 new_rucksacks = []
 intersectionValues = []
-def day2(rucksacks):
+def part2(rucksacks):
     for r in rucksacks:
         new_item = list(r)
         new_rucksacks.append(new_item)
@@ -53,19 +42,16 @@ def day2(rucksacks):
         
         x = set(lists[0])
         y = set(lists[1])
-        z = set(lists[2])  
-        print(x,y,z)        
+        z = set(lists[2])       
         
-    
         listIntersection = x.intersection(y,z)
         mostCommonLetter = list(listIntersection)
 
-
-        print("The intersection is:", (mostCommonLetter))
-        print("The corresponding value is:", value.index(mostCommonLetter[0]))
         intersectionValues.append(value.index(mostCommonLetter[0]))
 
-    print("The answer for day 2 is: ", sum(intersectionValues))
+    print("The answer for day 2 is {}.".format(sum(intersectionValues)))
+    return sum(intersectionValues)
 
-day2(rucksacks)
+part1(rucksacks)
+part2(rucksacks)
 

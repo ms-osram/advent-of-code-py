@@ -1,78 +1,77 @@
-"""
-lists = [["D", "T", "W", "N", "L"], ["H", "P", "C"], ["J", "M", "G", "D", "N", "H", "P", "W"], ["L", "Q", "T", "N", "S", "W", "C"], ["N", "C", "H", "P"], ["B", "Q", "W", "M", "D", "N", "H", "T"], ["L", "S", "G", "J", "R", "B", "M"], ["T", "R", "B", "V", "G", "W", "N", "Z"], ["L", "P", "N", "D", "G", "W"]]
-
-"""
-lists = [['N', 'Z'], ['D', 'C', 'M'], ['P']]
-
-
-for lst in lists:
-    lst.reverse()
-
-print("Original List:", lists)
-
+from copy import deepcopy
+from sys import stdin
+from collections import deque
 
 instructions = []
-message = []
-
-while True:
-    inp = ""
-    try: inp = input()
-
-    except EOFError:
-        break
-
-    x = inp.replace("move ","").replace(" from ", " ").replace(" to ", " ")
-    xSplit = x.split(" ")
-    instructions.append(xSplit)
-
 steps = []
-for num in instructions:
+stacks = [[],[],[],[],[],[],[],[],[]]
+
+for line in stdin:
+    if line == "\n":
+        break
+    for (crate, stack) in zip(line[1::4], stacks):
+        if crate == " ":
+            continue    
+        stack.append(crate)
+
+for line in stdin:
+    x = line.replace("move ","").replace(" from ", " ").replace(" to ", " ")
+    xSplit = x.split(" ")
+
     step = []
-    for n in num:
-        step.append(int(n))
-        
-    steps.append(step)
+    for splits in xSplit:
+        step.append(int(splits))
+    instructions.append(step)
     step = []
 
+for stack in stacks:
+    try:
+        stack.pop()
+    except IndexError:
+        break
+    stack.reverse()
 
+    for crate in stack:
+        print("[" + crate + "]", end=" ")
+    print()
 
-def day1(steps):
+def part1(steps, stacks):
+    message = []
     for stp in steps:
         n = stp[0]
         x1 = stp[1]-1
         x2 = stp[2]-1
 
         for i in range(n):
-            lists[x2].append(lists[x1].pop())
+            stacks[x2].append(stacks[x1].pop())
 
-        print(lists)
+    for m in range(len(stacks)):
+        message.append(stacks[m][-1])
 
-def day2(steps):
-    temp_list = []
+    joinMessage = "".join(message)
+    print("The message for Part 1 is {}.".format(joinMessage))
+    return joinMessage
+
+def part2(steps, stacks):
+    message = []
     for stp in steps:
-        n = -stp[0]
+        n = stp[0]
         x1 = stp[1]-1
         x2 = stp[2]-1
         
-        print("n:", n, "x1: ", x1, "x2: ", x2)
-        
-        temp_list = [lists[x1][0:n]]
-        temp_list.reverse()
-        
-        lists[x2].extend(temp_list)
-        del lists[x1][n]
-        
+        rev = []
+        for i in range(n):
+            rev.append(stacks[x1].pop())
 
-        
-        
-        print(lists)
+        rev.reverse()
+        stacks[x2].extend(rev)
+            
+    for m in range(len(stacks)):
+        message.append(stacks[m][-1])
 
-
-day2(steps)
-
-
-for m in range(len(lists)):
-    message.append(lists[m][-1])
-
-joinMessage = "".join(message)
-print("The message is: ", joinMessage)
+    joinMessage = "".join(message)
+    print("The message for Part 2 is {}.".format(joinMessage))
+    return joinMessage
+    
+part1(instructions, deepcopy(stacks))
+part2(instructions, stacks)

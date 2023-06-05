@@ -1,21 +1,16 @@
+from sys import stdin
+
 directions = []
 
-while True:
-    inp = ""
-    try:
-        inp = input()
 
-    except EOFError:
-        break
-        
-    xSplit = inp.split(" ")
+for inp in stdin: 
+    xSplit = inp.strip().split(" ")
     temp_list = []
     for splits in xSplit:
         if splits.isdigit(): 
             temp_list.append(int(splits))
         else: temp_list.append(splits)
     directions.append(temp_list)
-
 
 
 def main_head_movement(length): 

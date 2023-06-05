@@ -1,124 +1,73 @@
+from sys import stdin
 strategyGuide = []
 
-while True:
 
-    inp = ""
-    try:
-        inp = input()
-
-    except EOFError:
-        break
-
-    x = inp.split(" ")
+for line in stdin:
+    x = line.strip().split(" ")
     strategyGuide.append(x)
 
-roundScores1 = [] 
-roundScores2 = []
+def calculate_score(strategyGuide):
+    roundScores1 = []
+    roundScores2 = []
 
-def scoreCalculator(strategyGuide):
-    iterator = 0
-    score = 0
-    while iterator < len(strategyGuide):
-        generatedShape = strategyGuide[iterator][0]
+    for generatedShape, expectedResult in strategyGuide:
+        score1 = 0
+
         if generatedShape == "A":
-            generatedChoice = "Rock" 
+            generatedChoice = "Rock"
         elif generatedShape == "B":
-            generatedChoice = "Paper" 
+            generatedChoice = "Paper"
         elif generatedShape == "C":
-            generatedChoice = "Scissors" 
+            generatedChoice = "Scissors"
+ 
+        selectedChoice1 = None
+        if expectedResult == "X":
+            selectedChoice1 = "Rock"
+            score1 += 1
+        elif expectedResult == "Y":
+            selectedChoice1 = "Paper"
+            score1 += 2
+        elif expectedResult == "Z":
+            selectedChoice1 = "Scissors"
+            score1 += 3
 
+        if generatedChoice == selectedChoice1:
+            score1 += 3
+        elif (generatedChoice == "Rock" and selectedChoice1 == "Paper") or (generatedChoice == "Scissors" and selectedChoice1 == "Rock") or (generatedChoice == "Paper" and selectedChoice1 == "Scissors"):
+            score1 += 6
 
-        selectedShape = strategyGuide[iterator][1]
-        if selectedShape == "X":
-            selectedChoice = "Rock" 
-            score += 1
-        elif selectedShape == "Y":
-            selectedChoice = "Paper"
-            score += 2
-        elif selectedShape == "Z":
-            selectedChoice = "Scissors"
-            score +=3
-
-        if generatedChoice == selectedChoice:
-            result = "Draw"
-        elif (generatedChoice == "Rock") and (selectedChoice == "Paper"):
-            result = "Win"
-        elif (generatedChoice == "Paper") and (selectedChoice == "Scissors"):
-            result = "Win"
-        elif (generatedChoice == "Scissors") and (selectedChoice == "Rock"):
-            result = "Win"
-        else: 
-            result = "Lose"
-
-        if result == "Draw":
-            score += 3
-        elif result == "Win":
-            score += 6
+        roundScores1.append(score1) 
         
+        selectedChoice2 = None
+        score2 = 0
+        if expectedResult == "X": # lose
+            selectedChoice2 = {"Rock": "Scissors", "Paper": "Rock", "Scissors": "Paper"}.get(generatedChoice)
+        elif expectedResult == "Y": # draw
+            selectedChoice2 = generatedChoice
+        elif expectedResult == "Z": # win
+            selectedChoice2 = {"Rock": "Paper", "Paper": "Scissors", "Scissors": "Rock"}.get(generatedChoice)
+
+        if selectedChoice2 == "Rock":
+            score2 += 1
+        elif selectedChoice2 == "Paper":
+            score2 += 2
+        elif selectedChoice2 == "Scissors":
+            score2 += 3
+
+
+        if expectedResult == "Y":
+            score2 += 3
+        elif expectedResult == "Z":
+            score2 += 6
         
-        roundScores1.append(score)
-        score = 0
-        iterator += 1
+        roundScores2.append(score2)
 
+        totalScore1 = sum(roundScores1)
+        totalScore2 = sum(roundScores2)
 
-def part2(strategyGuide):
-    iterator = 0
-    score = 0
-    while iterator < len(strategyGuide):
-        generatedShape = strategyGuide[iterator][0]
-        if generatedShape == "A":
-            generatedChoice = "Rock" 
-        elif generatedShape == "B":
-            generatedChoice = "Paper" 
-        elif generatedShape == "C":
-            generatedChoice = "Scissors" 
-
-
-        expectedResult = strategyGuide[iterator][1]
-        if expectedResult == "X": #lose
-            result = "Lose" 
-            if generatedChoice == "Rock":
-                selectedChoice = "Scissors"
-            elif generatedChoice == "Paper":
-                selectedChoice = "Rock"
-            elif generatedChoice == "Scissors":
-                selectedChoice = "Paper"
-
-        elif expectedResult == "Y": #draw
-            result = "Draw"
-            selectedChoice = generatedChoice
-        elif expectedResult == "Z": #win
-            result = "Win"
-            if generatedChoice == "Rock":
-                selectedChoice = "Paper"
-            elif generatedChoice == "Paper":
-                selectedChoice = "Scissors"
-            elif generatedChoice == "Scissors":
-                selectedChoice = "Rock"
-        
-        if selectedChoice == "Rock":
-            score += 1
-        elif selectedChoice == "Paper":
-            score += 2
-        elif selectedChoice == "Scissors":
-            score += 3
     
+    print("Part 1: the total score according to the strategy guide is {}.".format(totalScore1))
+    print("Part 2: the total score according to the strategy guide is {}.".format(totalScore2))
+    return totalScore1, totalScore2
 
-        if result == "Draw":
-            score += 3
-        elif result == "Win":
-            score += 6
-        
-        
-        roundScores2.append(score)
-        score = 0
-        iterator += 1
-
-
-scoreCalculator(strategyGuide)
-part2(strategyGuide)
-totalScore1 = sum(roundScores1)
-totalScore2 = sum(roundScores2)
-print("Answer for Day 1 is: ", totalScore1)
-print("Answer for Day 2 is: ", totalScore2)
-
+calculate_score(strategyGuide)
